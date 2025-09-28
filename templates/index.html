@@ -1,5 +1,41 @@
 {% extends "base.html" %}
+{% block title %}メモ一覧 - Memo Board{% endblock %}
 {% block content %}
-<h1>Hello,World</h1>
-<p>test {{ name }}</p>
+
+  {% if not memo_list %}
+    <section class="empty-state">
+      <div class="empty-card">
+        <div class="empty-emoji">📭</div>
+        <h2>メモはありません</h2>
+        <p>最初のメモを作成してみましょう。</p>
+        <a class="btn btn-primary" href="#" aria-disabled="true">＋ メモを追加</a>
+      </div>
+    </section>
+  {% else %}
+    <section class="page-head">
+      <h1 class="page-title">メモ一覧</h1>
+      <div class="actions">
+        <input class="search" type="search" placeholder="メモを検索…" aria-label="メモ検索" />
+        <a class="btn btn-primary" href="#" aria-disabled="true">＋ 新規メモ</a>
+      </div>
+    </section>
+
+    <section class="grid">
+      {% for memo in memo_list %}
+        <article class="card">
+          <div class="card-head">
+            <h2 class="card-title">{{ memo.title }}</h2>
+            <span class="badge">Memo</span>
+          </div>
+          <p class="card-body">{{ memo.body }}</p>
+
+          <div class="card-actions">
+            <a class="btn btn-ghost" href="#" aria-disabled="true">編集</a>
+            <a class="btn btn-ghost" href="#" aria-disabled="true">削除</a>
+          </div>
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
+
 {% endblock %}

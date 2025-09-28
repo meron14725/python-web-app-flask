@@ -1,12 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>メモアプリ</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{% block title %}My Memos{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="logo">📝</span>
+        <a class="brand-name" href="{{ url_for('top') }}">メモアプリ</a>
+      </div>
+      <nav class="nav">
+        <a href="{{ url_for('top') }}" class="nav-link">ホーム</a>
+        <!-- 他ページができたらここにリンク追加 -->
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <small class="inc">&copy; {{ 2025 }} メモアプリ</small>
+      <div class="footer-links">
+        <a href="#" aria-disabled="true">利用規約</a>
+        <a href="#" aria-disabled="true">プライバシー</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
